@@ -49,3 +49,6 @@ CREATE TABLE asistir (
     nota NUMBER(4,2),
     CONSTRAINT asistir_pk PRIMARY KEY (dni,n_curso)
 );
+
+
+
