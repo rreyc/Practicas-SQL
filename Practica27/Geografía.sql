@@ -30,6 +30,6 @@ ALTER TABLE localidades ADD CONSTRAINT localidades_fk1 FOREIGN KEY (id_localidad
 ALter TABLE provincias ADD CONSTRAINT provincias_fk1 FOREIGN KEY (id_capital) REFERENCES localidades(id_localidades) ;
 ALter TABLE provincias ADD CONSTRAINT provincias_fk2 FOREIGN KEY (id_comunidad) REFERENCES comunidades(id_comunidad) ;
 
-
+DROP TABLE localidades
 
 
