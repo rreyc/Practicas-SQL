@@ -40,3 +40,7 @@ CREATE TABLE goles (
 
 
 
+ALTER TABLE equipos MODIFY aforo CONSTRAINT equipos_nn3 NOT NULL;
+ALTER TABLE equipos MODIFY estadio CONSTRAINT equipos_nn4 NOT NULL;
+ALTER TABLE equipos MODIFY ano_fundacion DATE;
+ALTER TABLE jugadores DROP CONSTRAINT jugadores_nn1;
