@@ -59,6 +59,35 @@ ALTER TABLE localizaciones RENAME COLUMN cp TO cod_postal;
 ALTER TABLE empleados MODIFY email CONSTRAINT empleados_nn4 NOT NULL ;
 ALTER TABLE localizaciones DROP CONSTRAINT localizaciones_nn2;
 
+ALTER TABLE localizaciones DROP (cod_localizacion) CASCADE CONSTRAINTS ;
+ALTER TABLE localizaciones ADD cod_localizacion CHAR(5) PRIMARY KEY ;
+ALTER TABLE departamentos DROP (cod_loc);
+ALTER TABLE departamentos ADD cod_loc CHAR(5) REFERENCES localizaciones(cod_localizacion);
+ALTER TABLE empleados DISABLE CONSTRAINT empleados_nn4;
+ALTER TABLE historial ADD salario NUMBER(11,2);
+
+
+INSERT INTO puestos (cod_puesto, titulo_puesto, salario_min, salario_max) VALUES (1, 'Técnicos de mantenimiento',800,2100);
+INSERT INTO puestos (cod_puesto, titulo_puesto, salario_min, salario_max) VALUES (2, 'Auxiliar de mantenimiento',700,1400);
+INSERT INTO puestos (cod_puesto, titulo_puesto, salario_min, salario_max) VALUES (3, 'Director de mantenimiento',1400,3200);
+INSERT INTO puestos (cod_puesto, titulo_puesto, salario_min, salario_max) VALUES (4, 'Jefe de producción',1200,2400);
+INSERT INTO puestos (cod_puesto, titulo_puesto, salario_min, salario_max) VALUES (5, 'Director de marketing',1600,2800);
+
+INSERT INTO departamentos (cod_dep, nombre_dep, cod_resp, cod_loc) VALUES (1,'Mantenimiento',null,null);
+INSERT INTO departamentos (cod_dep, nombre_dep, cod_resp, cod_loc) VALUES (2,'Marketing',null,null);
+INSERT INTO departamentos (cod_dep, nombre_dep, cod_resp, cod_loc) VALUES (3,'Producción',null,null);
+
+
+
+INSERT INTO empleados(cod_emp, nombre, apellido1, apellido2, telefono, direccion, email, cod_jefe, cod_dep) VALUES (3,'María','Crespo','Rodríguez','979105641','C/ Marqués1 1','maria@empresa',NULL ,1);
+INSERT INTO empleados(cod_emp, nombre, apellido1, apellido2, telefono, direccion, email, cod_jefe, cod_dep) VALUES (1,'Alfonso','Hernández','Crespo','979101010','C/ Los tilos 1',NULL,3,1);
+INSERT INTO empleados(cod_emp, nombre, apellido1, apellido2, telefono, direccion, email, cod_jefe, cod_dep) VALUES (2,'Herminia','Salou','Bernet',NULL,'C/ Mayor 1','hsb@empresa.net',1,1);
+INSERT INTO empleados(cod_emp, nombre, apellido1, apellido2, telefono, direccion, email, cod_jefe, cod_dep) VALUES (4,'Luisa','Fernández','Calvo','657123456','C/ Marques 1','luisa@empresa.net',NULL,2);
+INSERT INTO empleados(cod_emp, nombre, apellido1, apellido2, telefono, direccion, email, cod_jefe, cod_dep) VALUES (5,'Avelino','González','Díaz','602666666','C/ Tinteros 17','eve@empresa.net',NULL,3);
+
+INSERT INTO historial (cod_puesto, cod_emp, fecha_inicio, fecha_fin, cod_dep,salario) VALUES (1,1,to_date('02/05/2008','dd/mm/yyyy'),to_date('03/01/2009','dd/mm/yyyy'),1,1300);
+INSERT INTO historial (cod_puesto, cod_emp, fecha_inicio, fecha_fin, cod_dep,salario) VALUES (3,1,to_date('04/01/2009','dd/mm/yyyy'),NULL,1,1800);
+
 
 
 
